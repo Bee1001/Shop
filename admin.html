@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Admin</title>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./style/admin.css" media="all" />
+        <link rel="stylesheet" type="text/css" href="./style/lib.css" media="all">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    </head>
+    <body>
+        <aside class="sidebar">
+            <div class="sidebar-wrapper">
+                <div class="nav-brand">Your Shoes</div>
+                <div class="main-sidebar">
+                    <ul class="menu-sidebar">
+                        <li class="sidebar-item active">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Dashboard</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <i class="fas fa-socks"></i>
+                            <span>Products</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <i class="fas fa-plus"></i>
+                            <span>Add Product</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <i class="ri-bill-fill"></i>
+                            <span>Ordered List</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <i class="fas fa-user-friends"></i>
+                            <span>Customer</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a href="/index.html">
+                                <i class="fas fa-undo-alt"></i>
+                                <span>Back</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+        <div class="admin-container">
+            <div class="block-content active">
+                
+            </div>
+            <div class="block-content">
+                <div class="mypost-container">
+                    <div class="mypost-wrapper">
+                        <div class="mypost-center" style="overflow-x: auto;">
+                            <div class="mypost-title-box">
+                                <div class="mypost-title">
+                                    Products
+                                </div>
+                                <div class="mypost-search">
+                                    <input id="search" type="text" placeholder="Search...">
+                                </div>
+                            </div>
+                            <table class="table-mypost">
+                                <thead>
+                                    <tr>
+                                        <th>Product Id</th>
+                                        <th>Product Image</th>
+                                        <th>Product Name</th>
+                                        <th>Brand</th>
+                                        <th>Price</th>
+                                        <th>Time</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="product-table"></tbody>
+                            </table>
+                            <div class="pagination-wrapper"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="block-content">
+                <form class="form-post">
+                    <div class="admin-post-input">
+                        <div class="admin-post-title">Post</div>
+                        <label for="name">Product Name</label>
+                        <input type="text" id="name" name="name" value="">
+                    </div>
+                    <div class="admin-post-input">
+                        <label for="quantity">Total Quantity</label>
+                        <input type="number" id="quantity" name="quantity" value="">
+                    </div>
+                    <div class="admin-post-input">
+                        <label for="price">Price</label>
+                        <input type="text" id="price" name="price" value="">
+                    </div>
+                    <div class="admin-post-input">
+                        <label>Product Image</label>
+                        <input id="image" type="file" name="image">
+                        <img src="https://fairydent.ro/wp-content/uploads/2016/10/orionthemes-placeholder-image-750x750.jpg" alt="Preview Image" width="280px" height="400px" id="previewImg">
+                    </div>
+                    <div class="admin-post-input">
+                        <label for="status">Status</label>
+                        <select name="status" id="status" class="admin-input-select">
+                            <option value="none" hidden selected disabled>Choose status</option>
+                            <option value="1">In stock</option>
+                            <option value="2">Out of stock</option>
+                        </select>
+                    </div>
+                    <div class="admin-post-input">
+                        <label for="brand">Brand</label>
+                        <select name="brand" id="brand" class="admin-input-select">
+                            <option value="none" hidden selected disabled>Choose Brand</option>
+                            <option value="converse">Converse</option>
+                            <option value="nike">Nike</option>
+                            <option value="adidas">Adidas</option>
+                            <option value="puma">Puma</option>
+                            <option value="bata">Bata</option>
+                            <option value="skechers">Skechers</option>
+                            <option value="fila">Fila</option>
+                        </select>
+                    </div>
+                    <div class="admin-post-input">
+                        <label for="description">Description</label>
+                        <textarea name="description" class="description" id="description" cols="30" rows="10"></textarea>
+                    </div>
+                    <div class="btn-post">
+                        <button type="submit" id="btn-post">Add</button>
+                    </div>
+                </form>
+            </div>
+            <div class="block-content">
+                <div class="mypost-container">
+                    <div class="mypost-wrapper">
+                        <div class="mypost-center" style="overflow-x: auto;">
+                            <div class="mypost-title-box">
+                                <div class="mypost-title">
+                                    Ordered List
+                                </div>
+                            </div>
+                            <table class="table-mypost">
+                                <thead>
+                                    <tr>
+                                        <th>Order Date</th>
+                                        <th>Username</th>
+                                        <th>Total Price</th>
+                                        <th>Status</th>
+                                        <th>Detail</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="ordered-table"></tbody>
+                            </table>
+                            <div class="pagination-wrapper"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="block-content">
+                <div class="mypost-container">
+                    <div class="mypost-wrapper">
+                        <div class="mypost-center" style="overflow-x: auto;">
+                            <div class="mypost-title-box">
+                                <div class="mypost-title">
+                                    Customers
+                                </div>
+                            </div>
+                            <table class="table-mypost">
+                                <thead>
+                                    <tr>
+                                        <th>Fullname</th>
+                                        <th>Username</th>
+                                        <th>Register Date</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="user-table"></tbody>
+                            </table>
+                            <div class="pagination-wrapper"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="block-content">
+                
+            </div>
+        </div>
+
+        <div class="admin-popup"></div>
+
+        <script src="https://kit.fontawesome.com/6b31c79fde.js" crossorigin="anonymous"></script>  
+        <script src="./script/lib.js"></script>
+        <script src="./script/main.js"></script>
+        <script src="./script/admin.js"></script>
+        <script src="./script/user.js"></script>
+    </body>
+</html>

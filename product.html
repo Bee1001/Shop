@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ecommerce</title>
+        <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="./style/product.css" media="all" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <div class="header-logo">EClothes</div>
+            <div class="header-item">
+                <ul>
+                    <li class="header-item-link">
+                        <a href="#">Home</a>
+                    </li>
+                    <li class="header-item-link">
+                        <a href="#">Categories</a>
+                    </li>
+                    <li class="header-item-link">
+                        <a href="#">About us</a>
+                    </li>
+                </ul>
+                <ul class="header-ul">
+                    <li class="header-item-link" id="login-user"></li>
+                    <li class="header-item-link">
+                        <i class="ri-search-line"></i>
+                    </li>
+                    <li class="header-item-link">
+                        <i class="ri-shopping-cart-fill icon-cart"></i>
+                        <div class="cart-popup">
+                            <a href="#" class="cart-item">
+                                <img src="https://wpbingosite.com/wordpress/favita/wp-content/uploads/2018/10/Image-1.jpg" alt="" class="cart-item-image">
+                                <div class="cart-item-info">
+                                    <span>BLUE JEAN</span>
+                                    <span>1 x $20.50</span>
+                                </div>
+                                <button class="button-delete"><i class="ri-delete-bin-line"></i></button>
+                            </a>
+                            <div class="cart-total">
+                                <span>TOTAL: </span>
+                                <div class="total-horizontal"></div>
+                                <span>$20.50</span>
+                            </div>
+                            <div class="cart-button">
+                                <a href="#" class="cart-button-link">View Cart</a>
+                                <a href="#" class="cart-button-link">Check Out</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <div class="contents-detail">
+            <div class="product-detail">
+                <div class="product-img">
+                    <img src="https://wpbingosite.com/wordpress/favita/wp-content/uploads/2018/10/Image-1.jpg" alt="">
+                </div>
+                <div class="product-content">
+                    <div class="product-info">
+                        <span>BLUE JEAN</span>
+                        <span>$20.50</span>
+                    </div>
+                    <p class="product-description">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                    </p>
+                    <form class="cart">
+                        <div class="quantity buttons-added">
+                            <button type="button" class="minus">
+                                <i class="ri-subtract-fill"></i>
+                            </button>
+                            <input type="number" class="input-quantity" step="1" min="1" max name="quantity" value="1">
+                            <button type="button" class="plus">
+                                <i class="ri-add-fill"></i>
+                            </button>
+                        </div>
+                        <button type="submit" class="add_to_cart">Add To Cart</button>
+                    </form>
+                    <div class="categories">
+                        <span>Categories: </span>
+                        <span>Men, Scandal</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <input type="checkbox" id="checkbox1" onClick="save()">checkbox</input>
+        <!-- <button type="button" onClick="save()">save</button> -->
+
+        <script>
+            function save() {	
+                var checkbox = document.getElementById("checkbox1");
+                localStorage.setItem("checkbox1", checkbox.checked);	
+            }
+
+            //for loading
+            var checked = JSON.parse(localStorage.getItem("checkbox1"));
+            document.getElementById("checkbox1").checked = checked;
+        </script>
+    </body>
+</html>
