@@ -168,9 +168,9 @@ const addCountToCart = (char, id) => {
 
         const indexProduct = customers[index].cart.findIndex(item => item.id == product.id);
 
-        if (indexProduct != -1) {
+        if (indexProduct != -1)
             customers[index].cart[indexProduct].count += quantity;
-        } else {
+        else
             customers[index].cart.push({
                 id: product.id,
                 name: product.name,
@@ -178,7 +178,6 @@ const addCountToCart = (char, id) => {
                 price: product.price,
                 count: quantity
             });
-        }
 
         localStorage.setItem('user', JSON.stringify(customers));
         addAlert("Add to cart successfully", "success");

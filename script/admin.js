@@ -1,21 +1,221 @@
 const formPost = document.querySelector('.form-post');
 
-const createProduct = () => {
-    const products = JSON.parse(localStorage.getItem('products')) || [
+function createProduct() {
+    const products = JSON.parse(localStorage.getItem('products')) || 
+    [
         {
             "id":1282406738503,
             "name":"Nike Blazer Mid",
-            "price":"1.000.000",
-            "image":"https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/fb7eda3c-5ac8-4d05-a18f-1c2c5e82e36e/blazer-mid-77-vintage-shoe-dNWPTj.png",
+            "price":"9.230.000",
+            "image":"./images/blog-1.jpg",
             "brand":"nike",
             "description":"giay rat dep",
             "createdAt":"20/11/2021"
         },
         {
+            "id":349023127358,
+            "name":"Giày Supernova+",
+            "price":"10.000.000",
+            "image":"./images/blog-15.jpg",
+            "brand":"adidas",
+            "description":"giày rất đẹp",
+            "createdAt":"20/11/2021"
+        },
+        
+        {
+            "id":509840079795,
+            "name":"Nike Blazer Mid '77 Vintage",
+            "price":"2.300.000",
+            "image":"./images/blog-4.jpg",
+            "brand":"nike",
+            "description":"Giày rất đẹp",
+            "createdAt":"20/11/2021"
+        },
+        {
+            "id":509840079125,
+            "name":"Nike React Live",
+            "price":"2.300.000",
+            "image":"./images/blog-5.jpg",
+            "brand":"nike",
+            "description":"Giày rất đẹp",
+            "createdAt":"20/11/2021"
+        },
+        {
+            "id":512840079125,
+            "name":"Nike React Infinity Run Flyknit",
+            "price":"3.490.000",
+            "image":"./images/blog-6.jpg",
+            "brand":"nike",
+            "description":"Giày rất đẹp",
+            "createdAt":"20/11/2021"
+        },
+        {
+            "id":349023587312,
+            "name":"Giày Stan Smith",
+            "price":"1.400.000",
+            "image":"./images/blog-13.jpg",
+            "brand":"adidas",
+            "description":"giày rất đẹp",
+            "createdAt":"20/11/2021"
+        },
+        {
+            "id":349023582358,
+            "name":"Adidas SUPERSTAR W",
+            "price":"4.300.000",
+            "image":"./images/blog-16.jpg",
+            "brand":"adidas",
+            "description":"giày rất đẹp",
+            "createdAt":"20/11/2021"
+        },
+        {
+            "id":1109760050951,
+            "name":"Converse Cons Mi Gente CX Hi-Top ",
+            "price":"2.100.000",
+            "image":"./images/blog-38.jpg",
+            "brand":"converse",
+            "description":"giày rất đẹp",
+            "createdAt":"20/11/2021"
+        },
+        {
+            "id":512840079125,
+            "name":"Nike Air Jordan 11 Retro",
+            "price":"3.000.000",
+            "image":"./images/blog-7.jpg",
+            "brand":"nike",
+            "description":"Giày rất đẹp",
+            "createdAt":"20/11/2021"
+        },
+        {
+            "id":512840023125,
+            "name":"Nike Air Vapormax 2021 FK",
+            "price":"2.000.000",
+            "image":"./images/blog-8.jpg",
+            "brand":"nike",
+            "description":"Giày rất đẹp",
+            "createdAt":"20/11/2021"
+        },
+        {
+            "id":122840023125,
+            "name":"Nike Blazer '77",
+            "price":"2.100.000",
+            "image":"./images/blog-9.jpg",
+            "brand":"nike",
+            "description":"Giày rất đẹp",
+            "createdAt":"20/11/2021"
+        },
+        {
+            "id":122840023125,
+            "name":"LeBron Witness 6",
+            "price":"5.000.000",
+            "image":"./images/blog-10.jpg",
+            "brand":"nike",
+            "description":"Giày rất đẹp",
+            "createdAt":"20/11/2021"
+        },
+        {
+            "id":349023587358,
+            "name":"Adidas Forum 84 Hi Marvel",
+            "price":"8.560.000",
+            "image":"./images/blog-11.jpg",
+            "brand":"adidas",
+            "description":"giày rất đẹp",
+            "createdAt":"20/11/2021"
+        },
+        {
+            "id":349023587359,
+            "name":"Adidas UltraBoost 21",
+            "price":"5.900.000",
+            "image":"./images/blog-12.jpg",
+            "brand":"adidas",
+            "description":"giày rất đẹp",
+            "createdAt":"2021-11-03T12:45:00.596Z"
+        },
+        {
+            "id":342323587358,
+            "name":"Adidas Superstar",
+            "price":"3.200.000",
+            "image":"./images/blog-17.jpg",
+            "brand":"adidas",
+            "description":"giày rất đẹp",
+            "createdAt":"20/11/2021"
+        },
+        {
+            "id":349028787358,
+            "name":"Adidas Ultrarange Exo Carbon",
+            "price":"9.000.000",
+            "image":"./images/blog-18.jpg",
+            "brand":"adidas",
+            "description":"giày rất đẹp",
+            "createdAt":"20/11/2021"
+        },
+        {
+            "id":1099768650121,
+            "name":"Converse Chuck Taylor All Star CX Create Next Comfort",
+            "price":"6.000.000",
+            "image":"./images/blog-33.jpg",
+            "brand":"converse",
+            "description":"giày rất đẹp",
+            "createdAt":"20/11/2021"
+        },
+        {
+            "id":1009738650151,
+            "name":"Converse Chuck Taylor All Star CX Create Next Comfort",
+            "price":"4.500.000",
+            "image":"./images/blog-35.jpg",
+            "brand":"converse",
+            "description":"giày rất đẹp",
+            "createdAt":"20/11/2021"
+        },
+        {
+            "id":349028787358,
+            "name":"ADIDAS ULTRABOOST DNA X LEGO® COLORS",
+            "price":"3.900.000",
+            "image":"./images/blog-20.jpg",
+            "brand":"adidas",
+            "description":"giày rất đẹp",
+            "createdAt":"20/11/2021"
+        },
+        {
+            "id":349073587358,
+            "name":"Vans Men's White Classic Slip-on Black",
+            "price":"5.200.000",
+            "image":"./images/blog-21.jpg",
+            "brand":"vans",
+            "description":"giày rất đẹp",
+            "createdAt":"20/11/2021"
+        },
+        {
+            "id":349023583758,
+            "name":"Vans Old Skool Platform Pastel",
+            "price":"8.100.000",
+            "image":"./images/blog-22.jpg",
+            "brand":"vans",
+            "description":"giày rất đẹp",
+            "createdAt":"20/11/2021"
+        },
+        {
+            "id":3490200587358,
+            "name":"Vans Old Skool Sneakers - Blue",       
+            "price":"4.900.000",
+            "image":"./images/blog-23.jpg",
+            "brand":"vans",
+            "description":"giày rất đẹp",
+            "createdAt":"20/11/2021"
+        },
+        {
+            "id":1009738651121,
+            "name":"Converse Black Chuck 70 Hi Sneakers",
+            "price":"5.500.000",
+            "image":"./images/blog-31.jpg",
+            "brand":"converse",
+            "description":"giày rất đẹp",
+            "createdAt":"20/11/2021"
+        },
+        {
             "id":1275979804086,
             "name":"Nike RevolutionNike",
-            "price":"2.000.000",
-            "image":"https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/jvcf7clhvzyavyopsi9n/revolution-5-road-running-shoes-8P3bh3.png",
+            "price":"4.300.000",
+            "image":"./images/blog-2.jpg",
             "brand":"nike",
             "description":"giay rat dep",
             "createdAt":"20/11/2021"
@@ -23,31 +223,50 @@ const createProduct = () => {
         {
             "id":509844779795,
             "name":"Nike Air Max",
-            "price":"1.500.000",
-            "image":"https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/e5af7319-a671-4187-a10a-020e09e7b3db/air-max-2021-shoes-Jkh1p6.png",
+            "price":"3.000.000",
+            "image":"./images/blog-3.jpg",
             "brand":"nike",
             "description":"Giày rất đẹp",
             "createdAt":"20/11/2021"
         },
         {
-            "id":1009738651121,
-            "name":"Converse Black Chuck 70 Hi Sneakers",
-            "price":"900.000",
-            "image":"https://bizweb.dktcdn.net/thumb/1024x1024/100/373/032/products/converse-classic-den-cao-co-fe73d640-a974-41e5-a3c0-229736b7b780.jpg?v=1601800958787",
+            "id":2079738651121,
+            "name":"Converse Black Chuck Sneakers",
+            "price":"5.200.000",
+            "image":"./images/blog-32.jpg",
             "brand":"converse",
             "description":"giày rất đẹp",
             "createdAt":"20/11/2021"
         },
         {
-            "id":349023587358,
-            "name":"GIÀY ADIDAS ULTRABOOST DNA X LEGO® COLORS",
-            "price":"2.200.000",
-            "image":"https://assets.adidas.com/images/w_600,f_auto,q_auto/60712c4ffd24452fbe87acee00dbf61a_9366/Giay_adidas_Ultraboost_DNA_x_LEGO(r)_Colors_trang_H67955_01_standard.jpg",
-            "brand":"adidas",
+            "id":2109738650951,
+            "name":"Converse Chuck 70 Great Next Purpose: Mi Gente Low Top",
+            "price":"2.100.000",
+            "image":"./images/blog-36.jpg",
+            "brand":"converse",
             "description":"giày rất đẹp",
             "createdAt":"20/11/2021"
-        }
+        },
+        {
+            "id":3209767650951,
+            "name":"Converse Cons Weapon CX Hi-Top [Limited Edition]",
+            "price":"2.000.000",
+            "image":"./images/blog-37.jpg",
+            "brand":"converse",
+            "description":"giày rất đẹp",
+            "createdAt":"20/11/2021"
+        },
+        {
+            "id":1191760350951,
+            "name":"Converse Cons Mi Gente Taylor All Star",
+            "price":"3.000.000",
+            "image":"./images/blog-39.jpg",
+            "brand":"converse",
+            "description":"giày rất đẹp",
+            "createdAt":"20/11/2021"
+        },
     ]
+    
 
     localStorage.setItem('products', JSON.stringify(products));
 }
@@ -55,10 +274,10 @@ const createProduct = () => {
 const state = {
     'products': () => { return JSON.parse(localStorage.getItem('products')) },
     'page': 1,
-    'rows': 5
+    'rows': 6
 }
 
-const pagination = (products, page, rows) => {
+function pagination(products, page, rows) {
     let start = (page - 1) * rows;
     let end = start + rows;
     let data = products.slice(start, end);
@@ -71,7 +290,7 @@ const pagination = (products, page, rows) => {
     }
 }
 
-const handlePageButtons = (pages, products) => {
+function handlePageButtons(pages, products) {
     const wrapper = document.querySelector('.pagination-wrapper');
     wrapper.innerHTML = '';
 
@@ -101,7 +320,7 @@ const handlePageButtons = (pages, products) => {
     })
 }
 
-const displayTable = (products) => {
+function displayTable(products) {
     const productTable = document.querySelector('.product-table');
     const data = pagination(products, state.page, state.rows);
     const newProducts = data.products;
@@ -117,7 +336,7 @@ const displayTable = (products) => {
                     </td>
                     <td>${product.name}</td>
                     <td>${product.brand}</td>
-                    <td>${product.price} đ</td>
+                    <td>${product.price} ₫</td>
                     <td>${product.createdAt}</td>
                     <td class="td-action" style="color: lightgreen;">
                         <span class="btn-edit" data-id="${product.id}" onclick="togglePopupEdit()">
@@ -149,7 +368,7 @@ const displayTable = (products) => {
     }
     handlePageButtons(data.pages, products);
 }
-const addProduct = (e) => {
+function addProduct(e) {
     e.preventDefault();
 
     const formData = state.products() || [];
@@ -185,7 +404,7 @@ const addProduct = (e) => {
     displayTable(state.products());
 }
 
-const deleteProduct = () => {
+function deleteProduct() {
     const deleteBtn = document.querySelectorAll('.btn-delete');
     const deletePopup = document.querySelectorAll('.popup-delete-post');
     const noBtn = document.querySelectorAll('.btn-no');
@@ -200,7 +419,7 @@ const deleteProduct = () => {
 
             yesBtn[index].onclick = function() {
                 const id = this.getAttribute('data-id');
-                const filtered = products.filter(product => product.id != id); // 1 cai la chuoi 1 la so
+                const filtered = products.filter(product => product.id != id);
 
                 localStorage.setItem('products', JSON.stringify(filtered));
                 displayTable(state.products());
@@ -209,7 +428,7 @@ const deleteProduct = () => {
     })
 }
 
-const editPost = (id, name, price, image, brand, description) => {
+function editPost(id, name, price, image, brand, description) {
     const products = state.products();
     const product = products.find(product => product.id == id);
 
@@ -230,34 +449,33 @@ const editPost = (id, name, price, image, brand, description) => {
     displayTable(state.products());
 }
 
-const updateProduct = () => {
+function updateProduct() {
     const editBtn = document.querySelectorAll('.btn-edit');
     const editForm = document.querySelector('.admin-popup');
     
-    const products = state.products();
     editBtn.forEach((item) => {
         item.onclick = function() {
             const id = this.getAttribute('data-id');
-            const index = state.products().findIndex(x => x.id == id);
+            const product = state.products().find(product => product.id == id);
 
             editForm.innerHTML = `<div class="edit-product-form">
-                <form class="form-edit" id="${products[index].id}">
+                <form class="form-edit" id="${product.id}">
                     <div class="btn-close" onclick="togglePopupEdit()">
                         <i class="ri-close-line"></i>
                     </div>
                     <div class="admin-post-input">
                         <div class="admin-post-title">Post</div>
                         <label for="name">Product Name</label>
-                        <input type="text" id="new_name" name="name" value="${products[index].name}">
+                        <input type="text" id="new_name" name="name" value="${product.name}">
                     </div>
                     <div class="admin-post-input">
                         <label for="price">Price</label>
-                        <input type="text" id="new_price" name="price" value="${products[index].price}">
+                        <input type="text" id="new_price" name="price" value="${product.price}">
                     </div>
                     <div class="admin-post-input">
                         <label>Product Image</label>
-                        <input onchange="handleImage('new_previewImg', 'new_image')" id="new_image" type="file" name="image">
-                        <img onclick="openFile('new_previewImg', 'new_image')" src="${products[index].image}" alt="${products[index].name}" id="new_previewImg">
+                        <input onchange="handleImage('new_previewImg', 'new_image')" onclick="this.value = null" id="new_image" type="file" name="image">
+                        <img onclick="openFile('new_previewImg', 'new_image')" src="${product.image}" alt="${product.name}" id="new_previewImg">
                     </div>
                     <div class="admin-post-input">
                         <label for="brand">Brand</label>
@@ -266,15 +484,12 @@ const updateProduct = () => {
                             <option value="converse">Converse</option>
                             <option value="nike">Nike</option>
                             <option value="adidas">Adidas</option>
-                            <option value="puma">Puma</option>
-                            <option value="bata">Bata</option>
-                            <option value="skechers">Skechers</option>
-                            <option value="fila">Fila</option>
+                            <option value="vans">Vans</option>
                         </select>
                     </div>
                     <div class="admin-post-input">
                         <label for="description">Description</label>
-                        <textarea name="description" class="description" id="new_description" cols="30" rows="10">${products[index].description}</textarea>
+                        <textarea name="description" class="description" id="new_description" cols="30" rows="10">${product.description}</textarea>
                     </div>
                     <div class="btn-post">
                         <button type="button" id="btn-edit" onclick="
@@ -297,28 +512,29 @@ const updateProduct = () => {
     })
 }
 
-const searchProduct = () => {
+function searchProduct() {
     const search = document.querySelector('#search');
-    const products = state.products();
     
     search.oninput = function(e) {
+        const products = state.products();
         const newProducts = products.filter(product => {
             return product.name.toLowerCase().includes(e.target.value.toLowerCase()) ||
+            product.brand.includes(e.target.value.toLowerCase()) ||
             product.id == e.target.value;
         })
         displayTable(newProducts);
-        updateProduct();
         deleteProduct();
+        updateProduct();
     }
 }
-const handleImage = (previewImg, filename) => {
+function handleImage(previewImg, filename) {
     const image = document.getElementById(filename);
     const preview = document.getElementById(previewImg);
 
     image.onchange = function(e) {
         const file = e.target.files[0];
         const reader = new FileReader();
-        reader.onloadend = function(e) {
+        reader.onload = function() {
             const base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
             localStorage.setItem('image', base64String);
             preview.src = `data:image/png;base64,${base64String}`;
@@ -327,7 +543,7 @@ const handleImage = (previewImg, filename) => {
     }
 }
 
-const openFile = (previewImg, filename) => {
+function openFile(previewImg, filename) {
     const image = document.getElementById(filename);
     const preview = document.getElementById(previewImg);
 
@@ -336,11 +552,11 @@ const openFile = (previewImg, filename) => {
     }
 }
 
-const togglePopupEdit = () => {
+function togglePopupEdit() {
     document.querySelector('.admin-popup').classList.toggle('show');
 }
 
-const togglePopupDelete = () => {
+function togglePopupDelete() {
     document.querySelector('.popup-delete-post').classList.toggle('show');
 }
 

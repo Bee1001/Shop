@@ -223,7 +223,6 @@
     padding: 30px;
 }
 .mypost-center {
-    margin-bottom: 100px;
     padding: 30px;
     background: white;
     box-shadow: 0 5px 15px rgb(0 0 0 / 5%);
@@ -457,4 +456,43 @@
     background: #333;
     color: white;
     transition: 0.3s ease;
+}
+
+/* Dashboard */
+.dashboard-heading {
+    margin: 20px 40px;
+    font-size: 1.5em;
+    font-family: 'Poppins', sans-serif;
+}
+.total-sales {
+    margin: 10px 40px;
+    display: flex;
+    justify-content: space-between;
+}
+.total-sales-title {
+    font-size: 1.1em;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    margin: 10px 0;
+
+}
+.total-sales-info {
+    display: flex;
+    justify-content: space-between;
+}
+.total-sales-col-2 {
+    font-size: 1.2em;
+    margin-right: 30px;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    background: #72a6ee;
+    padding: 20px;
+    border-radius: 5px;
+    color: white;
+    text-align: right;
+    font-family: 'Poppins', sans-serif;
+}
+.dashboard-number {
+    font-size: 1.6em;
 }

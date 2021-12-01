@@ -18,9 +18,7 @@ function Validator(options) {
         options.rules.forEach(rule => {
             const inputElement = formElement.querySelector(rule.selector);
             if(inputElement) {
-                inputElement.onblur = () => {
-                    validate(inputElement, rule);
-                }
+                inputElement.onblur = () => validate(inputElement, rule);
                 inputElement.oninput = () => {
                     let errorElement = inputElement.parentElement.querySelector(options.errorSelector);
 

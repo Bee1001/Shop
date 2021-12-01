@@ -50,3 +50,4 @@ function formattedPrice(price) {
     price = price.replaceAll('.', "");
     return parseFloat(price);
 }
+
