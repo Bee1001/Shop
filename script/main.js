@@ -8,6 +8,8 @@ window.onload = () => {
     const contents = document.querySelectorAll('.block-content');
     const dropdownUser = document.querySelector('.dropdown-user');
     const userButton = document.querySelector('#username');
+    const toggleBar = document.querySelector('.toggle-bar');
+    const sidebar = document.querySelector('.sidebar');
 
     sidebarItem.forEach((sidebar, index) => {
         sidebar.onclick = function() {
@@ -32,6 +34,10 @@ window.onload = () => {
         dropdownUser.style.display = (dropdownUser.style.display == 'block') ? 'none' : 'block';
     }
     if (dropdownUser) dropdownUser.onclick = () => logout();
+
+    toggleBar.onclick = function() {
+        sidebar.classList.toggle('active');
+    }
 }
 
 function formattedDate(date) {
