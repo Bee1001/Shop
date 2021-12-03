@@ -5,7 +5,7 @@ const displayProducts = () => {
     const productItem = document.querySelector('.product-item');
 
     let html = '';
-    products.forEach(product => {
+    products?.forEach(product => {
         html += `
             <div class="product-box" data-id="${product.id}">
                 <img class="product-image" src="${product.image}" alt="${product.name}" data-id="${product.id}">
@@ -51,7 +51,7 @@ const displayDetail = () => {
                                     `<div class="product-detail-status" style="color: 'lightgreen'">
                                         <span class="in_stock"><i class="ri-checkbox-circle-fill"></i></span>
                                         <span class="in_stock">In stock</span>
-                                    </div>` : 
+                                    </div>` :
                                     `<div class="product-detail-status" style="color: 'red'">
                                         <span class="out_of_stock"><i class="ri-close-circle-fill"></i></span>
                                         <span class="out_of_stock">Out of stock</span>
@@ -156,7 +156,7 @@ const addCountToCart = (char, id) => {
         quantity = Number(quantity.value);
 
         if(!loggedin) {
-            addAlert("Please login first to add to cart");
+            toastr.error("Please login first to add to cart");
             return;
         }
 
@@ -180,7 +180,7 @@ const addCountToCart = (char, id) => {
             });
 
         localStorage.setItem('user', JSON.stringify(customers));
-        addAlert("Add to cart successfully", "success");
+        toastr.success("Add to cart successfully");
         displayCart();
     }
 }
@@ -192,7 +192,7 @@ const addToCart = () => {
     addBtn.forEach(button => {
         button.onclick = function() {
             if(!loggedin) {
-                addAlert("Please login first to add to cart");
+                toastr.error("Please login first to add to cart");
                 return;
             }
 
@@ -215,7 +215,7 @@ const addToCart = () => {
             }
 
             localStorage.setItem('user', JSON.stringify(customers));
-            addAlert("Add to cart successfully", "success");
+            toastr.success("Add to cart successfully");
             displayCart();
         }
     })
@@ -226,7 +226,7 @@ const removeFromCart = (id) => {
     if(loggedin) {
         const customers = JSON.parse(localStorage.getItem('user'));
         const index = customers.findIndex(customer => customer.id == loggedin.id);
-        
+
         customers[index].cart = customers[index].cart.filter(cart => cart.id != id);
 
         localStorage.setItem('user', JSON.stringify(customers));

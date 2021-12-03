@@ -18,12 +18,12 @@ const register = (e) => {
     const confirmPass = document.getElementById('confirmpassword').value;
 
     if(password !== confirmPass) {
-        addAlert('Password is not matching');
+        toastr.error('Password is not matching');
         return;
     }
 
     if(!name || !email || !password) {
-        addAlert('One field is required');
+        toastr.error('One field is required');
         return;
     }
 
@@ -41,7 +41,7 @@ const register = (e) => {
     let errors = 0;
     database?.forEach(data => {
         if (data.email == email) {
-            addAlert("Email is in use");
+            toastr.error("Email is in use");
             ++errors;
             return;
         }
@@ -51,7 +51,7 @@ const register = (e) => {
 
     localStorage.setItem('user', JSON.stringify(formData));
 
-    addAlert("Register completed", "success");
+    toastr.success("Register completed");
 
     document.querySelector('form').reset();
 }
@@ -63,7 +63,7 @@ const login = (e) => {
     const password = document.getElementById('password').value;
 
     if (!email || !password) {
-        addAlert('Wrong email or password');
+        toastr.error('Wrong email or password');
         return;
     }
 
@@ -75,7 +75,7 @@ const login = (e) => {
     let formData = JSON.parse(localStorage.getItem('user'));
 
     if (!formData) {
-        addAlert('Wrong email or password');
+        toastr.error('Wrong email or password');
         return;
     }
 
@@ -84,7 +84,7 @@ const login = (e) => {
             localStorage.setItem('loggedin', JSON.stringify(data));
             window.location = 'index.html';
         } else {
-            addAlert('Wrong email or password');
+            toastr.error('Wrong email or password');
         }
     });
 }

@@ -35,7 +35,7 @@
                         </li>
                         <li class="sidebar-item">
                             <i class="fas fa-user-friends"></i>
-                            <span>Customer</span>
+                            <span>Customers</span>
                         </li>
                         <li class="sidebar-item">
                             <a href="/index.html">
@@ -49,7 +49,14 @@
         </aside>
         <div class="admin-container">
             <div class="block-content active">
-                <div class="dashboard-heading">Dashboard</div>
+                <div class="dashboard-heading">
+                    Dashboard
+                </div>
+                <div class="date-picker">
+                    <input type="date" id="from-date">
+                    <span class="arrow-right">&#8594;</span>
+                    <input type="date" id="to-date">
+                </div>
                 <div class="total-sales">
                     <div class="total-sales-col-1">
                         <div class="total-sales-title" id="inmonth"></div>
@@ -64,21 +71,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="total-sales-col-1">
-                        <div class="total-sales-title" id="premonth"></div>
-                        <div class="total-sales-info">
-                            <div class="total-sales-col-2" style="background: lightsalmon;">
-                                <span class="dashboard-number total-pre-month"></span>
-                                <span>Total Sales</span>
-                            </div>
-                            <div class="total-sales-col-2" style="background: lightpink;">
-                                <span id="qty-premonth" class="dashboard-number"></span>
-                                <span>Total Quantitys</span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
-                <div class="dashboard-heading" style="margin: 40px 40px 0 40px;">Total sales of each brand product in this month</div>
+                <div class="dashboard-heading" style="margin: 40px 40px 0 40px;" id="totalSales"></div>
                 <div class="mypost-center" style="overflow-x:auto; box-shadow: none; padding: 10px 40px;">
                     <table class="table-mypost">
                         <thead>
@@ -209,14 +203,23 @@
                     </div>
                 </div>
             </div>
-            <div class="block-content">
-                
-            </div>
+            <div class="block-content"></div>
         </div>
 
         <div class="admin-popup"></div>
 
-        <script src="https://kit.fontawesome.com/6b31c79fde.js" crossorigin="anonymous"></script>  
+        <script type="text/javascript">
+            Date.prototype.toDateInputValue = function() {
+                let local = new Date(this);
+                local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+                return local.toJSON().slice(0, 10);
+            };
+
+            document.getElementById('from-date').value = new Date(new Date(new Date(new Date().getFullYear(), new Date().getMonth(), 0))).toDateInputValue();
+            document.getElementById('to-date').value = new Date().toDateInputValue();
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script src="https://kit.fontawesome.com/6b31c79fde.js" crossorigin="anonymous"></script>
         <script src="./script/lib.js"></script>
         <script src="./script/main.js"></script>
         <script src="./script/admin.js"></script>

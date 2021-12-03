@@ -171,40 +171,41 @@ const order = JSON.parse(localStorage.getItem('ordered')) || [
 localStorage.setItem('ordered', JSON.stringify(order));
 
 
-let date = new Date();
-let currentMonth = (1 + date.getMonth()).toString();
-currentMonth = currentMonth.length > 1 ? currentMonth : '0' + currentMonth;
-let currentYear = date.getFullYear().toString();
+let [fromYear, fromMonth, fromDay] = document.getElementById('from-date').value.split('-'),
+    [toYear, toMonth, toDay] = document.getElementById('to-date').value.split('-');
+
+function updateDate() {
+    [fromYear, fromMonth, fromDay] = document.getElementById('from-date').value.split('-');
+    [toYear, toMonth, toDay] = document.getElementById('to-date').value.split('-');
+}
+
+function checkDate(date1, date2, date3) {
+    return (
+        (new Date(`${date1[0]}-${date1[1]}-${date1[2]}`) >= new Date(`${date2[0]}-${date2[1]}-${date2[2]}`)) &&
+        (new Date(`${date1[0]}-${date1[1]}-${date1[2]}`) <= new Date(`${date3[0]}-${date3[1]}-${date3[2]}`))
+    );
+}
 
 function totalSalesInMonth() {
     const orderList = JSON.parse(localStorage.getItem('ordered'));
 
     let totalSalesInMonth = 0;
-    let totalSalesPreMonth = 0;
     let quantityInMonth = 0;
-    let quantityPreMonth = 0;
 
     orderList.forEach(order => {
         if(order.status) {
-            let month = order.orderDate.split('/')[1];
-            let year = order.orderDate.split('/')[2];
+            const [day, month, year] = order.orderDate.split('/');
 
-            if(currentMonth == month && currentYear == year) {
+            if (checkDate([year, month, day], [fromYear, fromMonth, fromDay], [toYear, toMonth, toDay])) {
                 totalSalesInMonth += formattedPrice(order.totalPrice);
                 order.products.forEach(product => quantityInMonth += product.quantity);
-            }
-            if(currentMonth - 1 == month && currentYear == year) {
-                totalSalesPreMonth += formattedPrice(order.totalPrice);
-                order.products.forEach(product => quantityPreMonth += product.quantity);
             }
         }
     });
 
     return [
-        totalSalesInMonth.toLocaleString('vi', {style: 'currency', currency: 'VND'}), 
-        totalSalesPreMonth.toLocaleString('vi', {style: 'currency', currency: 'VND'}),
+        totalSalesInMonth.toLocaleString('vi', {style: 'currency', currency: 'VND'}),
         quantityInMonth,
-        quantityPreMonth
     ];
 }
 function totalSalesPerBrand() {
@@ -224,14 +225,13 @@ function totalSalesPerBrand() {
         sum = 0;
         orderList.forEach(order => {
             if(order.status) {
-                let month = order.orderDate.split('/')[1];
-                let year = order.orderDate.split('/')[2];
-            
-                if(currentMonth == month && currentYear == year) {
+                const [day, month, year] = order.orderDate.split('/');
+
+                if (checkDate([year, month, day], [fromYear, fromMonth, fromDay], [toYear, toMonth, toDay])) {
                     order.products.forEach(product => {
                         if(product.brand === brands[i])
                             sum += formattedPrice(product.price) * product.quantity;
-                    })
+                    });
                 }
             }
         })
@@ -256,14 +256,13 @@ function quantityPerBrand() {
         count = 0;
         orderList.forEach(order => {
             if(order.status) {
-                let month = order.orderDate.split('/')[1];
-                let year = order.orderDate.split('/')[2];
-            
-                if(currentMonth === month && currentYear === year) {
+                const [day, month, year] = order.orderDate.split('/');
+
+                if (checkDate([year, month, day], [fromYear, fromMonth, fromDay], [toYear, toMonth, toDay])) {
                     order.products.forEach(product => {
-                        if(product.brand === brands[i]) 
+                        if(product.brand === brands[i])
                             count += product.quantity;
-                    })
+                    });
                 }
             }
         })
@@ -278,7 +277,7 @@ function displayTableOfBrand() {
     let html = '', index = 1;
     let total = totalSalesPerBrand();
     let quantity = quantityPerBrand();
-    
+
     for(let key in total) {
         html += `
             <tr>
@@ -294,23 +293,39 @@ function displayTableOfBrand() {
 
 function displayTotalSales() {
     const totalInMonth = document.querySelector('.total-in-month');
-    const totalPreMonth = document.querySelector('.total-pre-month');
-
     const qtyInMonth = document.querySelector('#qty-inmonth');
-    const qtyPreMonth = document.querySelector('#qty-premonth');
-
     const inmonth = document.querySelector('#inmonth');
-    const premonth = document.querySelector('#premonth');
+    const totalSales = document.querySelector('#totalSales');
 
     let arr = totalSalesInMonth();
 
-    inmonth.innerText = `In the ${currentMonth}th month`;
-    premonth.innerText = `In the ${currentMonth - 1}th month`;
+    inmonth.innerText = `From ${fromDay}/${fromMonth}/${fromYear} to ${toDay}/${toMonth}/${toYear}`;
+    totalSales.innerText = `Total sales of each brand product from ${fromDay}/${fromMonth}/${fromYear} to ${toDay}/${toMonth}/${toYear}`;
 
     totalInMonth.innerText = arr[0];
-    totalPreMonth.innerText = arr[1];
-    qtyInMonth.innerText = arr[2];
-    qtyPreMonth.innerText = arr[3];
+    qtyInMonth.innerText = arr[1];
+}
+
+document.getElementById('from-date').onchange = () => {
+    updateDate();
+    displayTableOfBrand();
+    totalSalesInMonth();
+    totalSalesPerBrand();
+    displayTotalSales();
+    if (new Date(`${fromYear}-${fromMonth}-${fromDay}`) > new Date(`${toYear}-${toMonth}-${toDay}`)) {
+        toastr.warning('Please select a valid date');
+    }
+}
+
+document.getElementById('to-date').onchange = () => {
+    updateDate();
+    displayTableOfBrand();
+    totalSalesInMonth();
+    totalSalesPerBrand();
+    displayTotalSales();
+    if (new Date(`${fromYear}-${fromMonth}-${fromDay}`) > new Date(`${toYear}-${toMonth}-${toDay}`)) {
+        toastr.warning('Please select a valid date');
+    }
 }
 
 displayTableOfBrand();

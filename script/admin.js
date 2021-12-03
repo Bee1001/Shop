@@ -1,7 +1,7 @@
 const formPost = document.querySelector('.form-post');
 
 function createProduct() {
-    const products = JSON.parse(localStorage.getItem('products')) || 
+    const products = JSON.parse(localStorage.getItem('products')) ||
     [
         {
             "id":1282406738503,
@@ -21,7 +21,7 @@ function createProduct() {
             "description":"giày rất đẹp",
             "createdAt":"20/11/2021"
         },
-        
+
         {
             "id":509840079795,
             "name":"Nike Blazer Mid '77 Vintage",
@@ -195,7 +195,7 @@ function createProduct() {
         },
         {
             "id":3490200587358,
-            "name":"Vans Old Skool Sneakers - Blue",       
+            "name":"Vans Old Skool Sneakers - Blue",
             "price":"4.900.000",
             "image":"./images/blog-23.jpg",
             "brand":"vans",
@@ -266,7 +266,7 @@ function createProduct() {
             "createdAt":"20/11/2021"
         },
     ]
-    
+
 
     localStorage.setItem('products', JSON.stringify(products));
 }
@@ -281,7 +281,7 @@ function pagination(products, page, rows) {
     let start = (page - 1) * rows;
     let end = start + rows;
     let data = products.slice(start, end);
-    
+
     let pages = Math.ceil(products.length / rows);
 
     return {
@@ -296,7 +296,7 @@ function handlePageButtons(pages, products) {
 
     for(let page = 1; page <= pages; page++) {
         wrapper.innerHTML += `<button value="${page}" class="number-page number-${page}">${page}</button>`;
-        if(page == 1 && state.page == 1) 
+        if(page == 1 && state.page == 1)
         wrapper.innerHTML = `<button value="${page}" class="number-page number-${page} active">${page}</button>`;
     }
     const pageButtons = document.querySelectorAll('.number-page');
@@ -308,9 +308,9 @@ function handlePageButtons(pages, products) {
 
             document.querySelector('.product-table').innerHTML = '';
             state.page = this.value;
-            
+
             pageButton.classList.add('active');
-            
+
             displayTable(products);
             updateProduct();
             deleteProduct();
@@ -381,7 +381,7 @@ function addProduct(e) {
     const id = Math.floor(new Date().valueOf() * Math.random());
 
     if(!name || !price || !brand || !description || !image) {
-        addAlert("One field is required");
+        toastr.error("One field is required");
         return;
     }
 
@@ -398,7 +398,7 @@ function addProduct(e) {
     });
 
     localStorage.setItem('products', JSON.stringify(formData));
-    addAlert("Your product was created", "success");
+    toastr.success("Your product was created");
 
     formPost.reset();
     displayTable(state.products());
@@ -443,7 +443,7 @@ function editPost(id, name, price, image, brand, description) {
 
     for (let key in product)
         product[key] = keys[i++];
-    
+
     localStorage.setItem('products',JSON.stringify(products));
     document.querySelector('.admin-popup').classList.toggle('show');
     displayTable(state.products());
@@ -452,7 +452,7 @@ function editPost(id, name, price, image, brand, description) {
 function updateProduct() {
     const editBtn = document.querySelectorAll('.btn-edit');
     const editForm = document.querySelector('.admin-popup');
-    
+
     editBtn.forEach((item) => {
         item.onclick = function() {
             const id = this.getAttribute('data-id');
@@ -493,7 +493,7 @@ function updateProduct() {
                     </div>
                     <div class="btn-post">
                         <button type="button" id="btn-edit" onclick="
-                            (function() {            
+                            (function() {
                                 const name = document.getElementById('new_name').value;
                                 const price = document.getElementById('new_price').value;
                                 const brand = document.getElementById('new_brand').value;
@@ -514,7 +514,7 @@ function updateProduct() {
 
 function searchProduct() {
     const search = document.querySelector('#search');
-    
+
     search.oninput = function(e) {
         const products = state.products();
         const newProducts = products.filter(product => {
@@ -570,4 +570,3 @@ openFile('previewImg', 'image');
 handleImage('previewImg', 'image');
 
 formPost?.addEventListener('submit', addProduct);
-
