@@ -63,6 +63,10 @@
 .menu-sidebar i {
     padding: 0 10px;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> b2e7279d697dd4bf749c59c74cdf13120265d56a
 .sidebar-item.active {
     background: rgba(255,255,255,0.2);
     border-right: white solid 4px;
@@ -488,6 +492,7 @@
     font-size: 1.6em;
 }
 
+<<<<<<< HEAD
 .date-picker {
     margin: 0 40px;
 }
@@ -503,6 +508,8 @@
     font-size: 30px;
 }
 
+=======
+>>>>>>> b2e7279d697dd4bf749c59c74cdf13120265d56a
 /* Responsive */
 .toggle-bar {
     position: absolute;
@@ -573,4 +580,8 @@
     .popup-delete-post {
         right: 65px;
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> b2e7279d697dd4bf749c59c74cdf13120265d56a
